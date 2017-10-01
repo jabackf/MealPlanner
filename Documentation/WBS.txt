@@ -1,0 +1,34 @@
+// wbsplanner.com/home/wbsplanner.php
+// The first line should include the project name
+// The second and on at the same level will be the upper level
+// To add a sub level, use the TAB key
+// To manage your status and budget, register for free
+
+Meal Planner
+Project Planning
+	Requirements
+		Scope
+		Feasibility Study
+		Requirements Document
+Design
+	System Design
+		Module Design
+		Work Breakdown Structure
+		Project Plan
+		Risk Management
+Development
+	Front-End
+		Page Design
+		UI Design
+		Meal Validation
+	Back-End
+		Server Setup
+		Module Implementation
+	Database
+		Build Table Structure
+		Populate
+Deployment
+	Database Migration
+	System Test
+		Verification
+		Validation

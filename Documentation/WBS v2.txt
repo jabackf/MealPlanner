@@ -1,0 +1,38 @@
+// wbsplanner.com/home/wbsplanner.php
+// The first line should include the project name
+// The second and on at the same level will be the upper level
+// To add a sub level, use the TAB key
+// To manage your status and budget, register for free
+
+// The first line should include the project name
+// The second and on at the same level will be the upper level
+// To add a sub level, use the TAB key
+// To manage your status and budget, register for free
+
+Meal Planner
+System Design
+	Module Design
+	UI Design
+	Database Design
+Development
+	Environment
+		Server Setup
+		GitHub Setup
+		Deployment Pipeline
+	Front-End
+		Page Design
+		UI Design
+		Meal Validation
+		Front-End Testing
+	Back-End
+		Implement Global Module
+		Implement DB Module
+		Implement Calendar Module
+		Implement Meal Planner Module
+		Module Testing
+	Database
+		Build Table Structure
+		Populate with Data
+Deployment
+	Database Migration
+	System Test
