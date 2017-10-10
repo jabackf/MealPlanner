@@ -133,7 +133,7 @@ function show_calendar($edit, $hoffset, $jscallback="")
   
       $col='black';
 	  $data_exists=false;
-      if (file_exists("cal/".$m.".".str_pad($i, 2, "0", STR_PAD_LEFT).".".$y.".cal"))
+      if (false) //data exists
       {
          $col="blue";
 		 $data_exists=true;
@@ -148,17 +148,14 @@ function show_calendar($edit, $hoffset, $jscallback="")
            echo "\n\t\t\t</tr><tr>";
       }
 	  
-	  //Show the date on the calendar and the data associated with it
-	  echo "\n\t\t\t\t<td style='color:".$col."' class='calendar_date'>";
+	  //Show the date on the calendar
+	  echo "\n\t\t\t\t<td style='color:".$col."' class='calendar_date' id='".$i."'>";
 	  if ($jscallback){
 		  echo "<a style='color:".$col."' href='javascript:".$jscallback."(".$m.",".$i.",",$y.");'>";
 	  }
       echo $i;
 	  if ($jscallback){
 		  echo "</a>";
-	  }
-	  if ($data_exists){
-			echo "\n\t\t\t\t\t<div class='date_data'>PlaceHolder Info #1<br>PlaceHolder Info #2<br>PlaceHolder Info #3</div>";
 	  }
 	  echo "</td>";
       $c=($c+1);
@@ -175,7 +172,52 @@ function show_calendar($edit, $hoffset, $jscallback="")
   echo "\n\t\t</table>";
 
   echo "\n\t<a href='http://".$purl."#calendar'>prev</a> - "."<a href='http://".$nurl."#calendar'>next</a>\n</div></div><br>\n";
+  
+  
+  //Draw data panels
+  echo "<!---Add panels that show data for each date-->\n";
+  for ($i=1; $i<=days_in_month($m, $y); $i+=1)
+  {
+  	  //if ($data_exists){
+			echo "\n<div class='date_data' id='date_data".$i."'><b>PlaceHolder Info #1</b><br/>Date: ".$m."/".$i."/".$y."<br/>Fill this panel with data from DB</div>";
+	  //}
+  }
+  
   echo "<!--- END CALENDAR -->\n";
 }
 
 ?>
+
+<script>
+function calMouseOverDate() {
+	var dates = document.getElementsByClassName("calendar_date");
+	
+	//Add mouseover event to display panel and move to mouse coordinates
+	for (var i = 0; i < dates.length; i++) {
+		dates[i].addEventListener("mouseenter", function( event ) {
+			var panel = document.getElementById("date_data"+event.target.id)
+			 if (panel !=null){ 
+				panel.style['display'] = "block";
+				panel.style.left = event.clientX+10;
+				panel.style.top = event.clientY+10;
+				event.target.style["background-color"]="lightblue";
+			 }
+
+	  }, false);
+	}
+	
+	//Add mouseout event to hide panel
+	for (var i = 0; i < dates.length; i++) {
+		dates[i].addEventListener("mouseleave", function( event ) {
+			var panel = document.getElementById("date_data"+event.target.id)
+			 if (panel !=null){ 
+				panel.style['display'] = "none";
+				event.target.style["background-color"]="transparent";
+			 }
+
+	  }, false);
+	}
+}
+
+window.addEventListener("load", calMouseOverDate, false);
+</script>

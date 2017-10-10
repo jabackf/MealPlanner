@@ -9,6 +9,10 @@
 
 /*The small panel that pops up displaying calendar data when you hover over the date*/
 .date_data{
+	z-index=-1;
 	position:absolute;
-	visibility:hidden;
+	/*visibility:hidden;*/
+	display:none;
+	background-color:lightblue;
+	padding:8px;
 }
