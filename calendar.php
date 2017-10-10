@@ -1,4 +1,6 @@
 
+<link href="css/meal.css" rel="stylesheet" type="text/css">
+
 <?php
 function days_in_month($month, $year)
 {
@@ -58,12 +60,15 @@ function show_printable_calendar_link()
     }
 }
 
-function show_calendar($edit, $hoffset)
+//arguments:
+//$jscallback - optional argument that specifies the name of a javascript callback function
+//to be called when a date is clicked. The callback is passed three arguments: month, day, and year.
+function show_calendar($edit, $hoffset, $jscallback="")
 {
   echo "<!--- BEGIN CALENDAR -->\n";
 
   $width=165;  //horizontal space between calendar numbers
-  $height=201;  //vertical space between calendar numbers
+  $height=203;  //vertical space between calendar numbers
   $m= date('m');
   $y= date('Y');
   echo "<div name='calendar'>";
@@ -127,9 +132,11 @@ function show_calendar($edit, $hoffset)
   {
   
       $col='black';
+	  $data_exists=false;
       if (file_exists("cal/".$m.".".str_pad($i, 2, "0", STR_PAD_LEFT).".".$y.".cal"))
       {
          $col="blue";
+		 $data_exists=true;
       }
       if ($m==date('m') && $y==date('Y') && $i==date('d'))
       {
@@ -140,7 +147,20 @@ function show_calendar($edit, $hoffset)
            $c=0;
            echo "\n\t\t\t</tr><tr>";
       }
-      echo "\n\t\t\t\t<td ><b><a href='".$_SERVER['REQUEST_URI']."?select_month=".$m."&select_day=".$i."&select_year=".$y."'><font size=2 color='".$col."'>".$i."</a></b></font></td>";
+	  
+	  //Show the date on the calendar and the data associated with it
+	  echo "\n\t\t\t\t<td style='color:".$col."' class='calendar_date'>";
+	  if ($jscallback){
+		  echo "<a style='color:".$col."' href='javascript:".$jscallback."(".$m.",".$i.",",$y.");'>";
+	  }
+      echo $i;
+	  if ($jscallback){
+		  echo "</a>";
+	  }
+	  if ($data_exists){
+			echo "\n\t\t\t\t\t<div class='date_data'>PlaceHolder Info #1<br>PlaceHolder Info #2<br>PlaceHolder Info #3</div>";
+	  }
+	  echo "</td>";
       $c=($c+1);
   }
 
