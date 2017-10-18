@@ -4,13 +4,18 @@
 	Jonah Backfish
 	last modified 10/16/17
 	
-	Contains general settings for the meal planner and database
+	Contains general settings and debug parameters for the system
 */
 
 class Settings{
 	
 	//Changes various settings/functionality based on where the system is running (e.g., locally, server1, server2, etc.)
 	public $deployment_mode="local"; //"local", "000webhost"
+	
+	//When set to true, the system will log all mysql queries executed through MealDB::runQuery to $querylog_fname
+	//Entries are timestamped and appended to the end of the file if it already exists.
+	public $dump_queries=false;
+	public $querylog_fname="db/querylog.txt";
 	
 	//DB Settings
 	public $name, $host, $uname, $pass;

@@ -30,6 +30,30 @@
 
 }
 
+/*The div that a single notification message in the mealplanner tools*/
+.notification{
+	text-align:center;
+	padding:8px;
+	font-weight:bold;
+	color:white;
+	margin:0px;
+}
+/*The div that holds all notification messages in the mealplanner tools*/
+.notifications{
+}
+
 .center{
 	text-align:center;
+}
+
+.alignRight{
+	text-align:right;
+}
+
+.indentForty{
+	padding-left:40px;
+}
+
+.toolPanel{
+	display:inline-block;
 }
