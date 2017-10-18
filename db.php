@@ -45,7 +45,7 @@ class MealDB{
 		//Use the database
 		$result = mysqli_select_db(self::$dbHandle,self::$dbName)
 		or
-		die("<br/>".self::$dbName." database could not be selected.".mysql_error());
+		die("<br/>".self::$dbName." database could not be selected.".mysqli_error(self::$dbHandle));
 
 	} //end function connect
 	
@@ -70,7 +70,7 @@ class MealDB{
 		//Use the database
 		$result = mysqli_select_db(self::$dbHandle,self::$dbName)
 		or
-		die("<br/>".self::$dbName." database could not be selected.".mysql_error());
+		die("<br/>".self::$dbName." database could not be selected.".mysqli_error(self::$dbHandle));
 		self::populateNewDatabase();
 	}
 	
@@ -213,7 +213,7 @@ class MealDB{
 		if (self::$config->dump_queries){
 			fwrite(self::$logfileHandle,PHP_EOL.PHP_EOL."Timestamp: ".date("Y-m-d H:i:s",time()).PHP_EOL."Attempting following query:".PHP_EOL.$q);
 		}
-		$r = mysqli_query(self::$dbHandle,$q)  or die("Error executing query: ".mysql_error());
+		$r = mysqli_query(self::$dbHandle,$q)  or die("Error executing query: ".mysqli_error(self::$dbHandle));
 		if (self::$config->dump_queries){
 			fwrite(self::$logfileHandle,PHP_EOL."Query succesfully executed.");
 		}
