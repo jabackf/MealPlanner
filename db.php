@@ -15,12 +15,13 @@ class MealDB{
 
 	private static $config; //Object that holds DB settings. Assigned in connect function.
 	private static $dbHandle = null;  //Handle used to internally reference DB. Assigned in connect method
-	private static $dbName = "meal"; //Name of the database
+	private static $dbName; //Name of the database
 	private static $logfileHandle = null; //A handle used for the query log file. See settings.php
 	
 	//Connects to the database
 	static function connect(){
 		self::$config = new Settings();
+		self::$dbName = self::$config->dbName;
 		
 		if (self::$config->dump_queries){
 			self::$logfileHandle=fopen(self::$config->querylog_fname,'a')
@@ -34,6 +35,11 @@ class MealDB{
 		//Check if the database exists. Call create_new_database if not.
 		if (!self::db_exists(self::$dbName)){
 			self::create_new_database();
+		}
+		
+		//Check if the database is empty, and populate it if so
+		if(mysqli_num_rows(self::runQuery("SHOW TABLES FROM ".self::$dbName)) == 0){
+			self::populateNewDatabase();
 		}
 
 		//Use the database
@@ -65,7 +71,12 @@ class MealDB{
 		$result = mysqli_select_db(self::$dbHandle,self::$dbName)
 		or
 		die("<br/>".self::$dbName." database could not be selected.".mysql_error());
-		
+		self::populateNewDatabase();
+	}
+	
+	//Adds the basic table structure to an empty database, the populates it with food items from the default foods csv file.
+	static function populateNewDatabase(){
+	
 		//Create FoodGroup Table
 		$sql = "CREATE TABLE FoodGroups (
 				groupId INT(6) UNSIGNED AUTO_INCREMENT, 
@@ -120,7 +131,7 @@ class MealDB{
 		
 		//Load default foods into database
 		self::loadCSVFoods();
-	}
+	} //End populate new database
 	
 	//Adds a new food item to the database if it doesn't already exist.
 	//$item = name of food item.
