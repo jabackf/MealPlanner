@@ -1,4 +1,12 @@
 
+/*Div that holds the entire calendar*/
+.calendar{
+	width:auto;
+	padding:5px;
+	width:168px;
+	display:block;
+}
+
 /*An individual number on the calendar*/
 .calendar_date{
 	position:relative;
@@ -7,12 +15,21 @@
 	
 }
 
+/*Calendar heading that displays the name of the month*/
+.calendar_header{
+	font-size:1.2em;
+	font-color:black;
+}
+
 /*The small panel that pops up displaying calendar data when you hover over the date*/
 .date_data{
 	z-index=-1;
 	position:absolute;
-	/*visibility:hidden;*/
 	display:none;
 	background-color:lightblue;
-	padding:8px;
+
+}
+
+.center{
+	text-align:center;
 }
