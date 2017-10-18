@@ -204,7 +204,7 @@ class MealDB{
 	
 	//Sanitizes database input.
 	static function scrub($input){
-		return stripcslashes(trim(/*remove tabs*/preg_replace('/\t+/', '',mysql_real_escape_string($input))));
+		return stripcslashes(trim(/*remove tabs*/preg_replace('/\t+/', '',mysqli_real_escape_string($input))));
 	}
 	
 	//Sanitizes and runs SQL query. Logs it if the dump_queries debugging option is set to true.

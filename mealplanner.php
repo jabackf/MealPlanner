@@ -102,7 +102,7 @@ class MealPlanner{
 		echo "\n\n<br><!--Delete Food Tools-->\n<div class='toolPanel'>";
 		echo "\n\t<form action='".basename($_SERVER['PHP_SELF'])."' method='post'>\n\t\t<fieldset><legend>Delete Food Items</legend>";
 		echo "\n\t<input type='hidden' name='savedata' value='deleteFood'>";
-		echo "\n\t\t<select name='foodName'><option value='none'></option>";
+		echo "\n\t\t<select name='foodName'><option value='none'>(select one)</option>";
 		$r=MealDB::runQuery("SELECT name FROM FoodItems");
 		while ($g=mysqli_fetch_row($r)){
 			echo "\n\t\t\t<option value='".$g[0]."'>".$g[0]."</option>";
