@@ -16,12 +16,27 @@ class Calendar{
 
 	private $callback = "";  //Stores a reference to a JS callback function that is called when a date is clicked.
 	private $calName = "default"; //The name of the calendar, used to reference the database
+	public $selectedMonth;
+	public $selectedYear;
 	
 	//$calName - The name of the calendar. If the calendar does not exist in the database, a new one will be created.
 	function __construct($calName){
 		if ($calName){
 			$this->calName = $calName;
 		}
+		$this->selectedYear= date('Y');
+		$this->selectedMonth= date('m');
+
+		//Check the URL for d and y variables. Otherwise, use the current month and year.
+		if (!empty($_GET['m']))
+		{
+			$this->selectedMonth=$_GET['m'];
+		}
+		if (!empty($_GET['y']))
+		{
+			$this->selectedYear=$_GET['y'];
+		}
+		
 	}
 	
 	//Set the javascript callback function
@@ -73,19 +88,12 @@ class Calendar{
 		$width=165;  //horizontal space between calendar numbers
 		$height=203;  //vertical space between calendar numbers
 		$hoffset=0;
-		$m= date('m');
-		$y= date('Y');
+
 		echo "<div name='calendar' class='calendar'>";
 
-		//Check the URL for d and y variables. Otherwise, use the current month and year.
-		if (!empty($_GET['m']))
-		{
-			$m=$_GET['m'];
-		}
-		if (!empty($_GET['y']))
-		{
-			$y=$_GET['y'];
-		}
+		
+		$m=$this->selectedMonth;
+		$y=$this->selectedYear;
 
 		//Get the next and previous month/year
 		$m=str_pad($m, 2, "0", STR_PAD_LEFT);

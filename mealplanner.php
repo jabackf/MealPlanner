@@ -95,6 +95,7 @@ class MealPlanner{
 		echo "\n\t\t\t</div></label>";
 		echo "\n\t\t<br><input type=submit name='submit' value='Save'>";
 		echo "\n\t</fieldset>\n\t</form>";
+		echo "\n</div>";
 	}
 	
 	//Shows a tool panel for deleted foods from the database.
@@ -110,11 +111,47 @@ class MealPlanner{
 		echo "\n\t\t</select>";
 		echo "\n\t\t <input type=submit name='submit' value='Delete Food Item'>";
 		echo "\n\t</fieldset>\n\t</form>";
+		echo "\n</div>";
 	}
 	
 	//Shows the date picker
 	function showDatePicker(){
 		$this->calHandle->show_calendar();
+	}
+	
+	//Shows the meal planning tool
+	function showMealPicker(){
+		echo "\n\n<br><!--Meal Picker Tools-->\n<div class='toolPanel'>";
+		
+		$numDays=$this->calHandle->days_in_month($this->calHandle->selectedMonth, $this->calHandle->selectedYear);
+		if (date('m')==$this->calHandle->selectedMonth && date('Y')==$this->calHandle->selectedYear){
+			$selectedDay=date('d');
+		}
+		else {
+			$selectedDay=1;
+		}
+		
+		for ($i=1; $i<=$numDays; $i+=1){
+		
+			$showHideString = ($i==$selectedDay) ? "style='display:inline-block'" : "style='display:none'";
+		
+			echo "\n\t<div class='mealPlannerPanel' ".$showHideString." id='mpdate-".$i."'>";
+			echo "\n\t\t<form action='".basename($_SERVER['PHP_SELF'])."' method='post'>\n\t\t<fieldset><legend>Create Meal Plan</legend>";
+			echo "\n\t\t<input type='hidden' name='savedata' value='addMeal'>";
+			
+			echo "\n\t\t<h3>Date: ".$this->calHandle->selectedMonth."/".$i."/".$this->calHandle->selectedYear."<br>";
+			
+			echo "\n\t\t\t<select name='foodName'><option value='none'>(select one)</option>";
+			$r=MealDB::runQuery("SELECT name FROM FoodItems");
+			while ($g=mysqli_fetch_row($r)){
+				echo "\n\t\t\t\t<option value='".$g[0]."'>".$g[0]."</option>";
+			}
+			echo "\n\t\t\t</select>";
+			echo "\n\t\t</fieldset>\n\t</form>";	
+			echo "\n\t</div>";
+		}
+		
+		echo "\n</div>";
 	}
 }
 
@@ -122,8 +159,19 @@ class MealPlanner{
 
 <script>
 
+function hideAllMealPanels(){
+	panels = document.getElementsByClassName("mealPlannerPanel");
+	for (var i = 0; i < panels.length; i++) {
+		panels[i].style['display'] = "none";
+	}
+}
+
 function loadDate(m,d,y) {
-	window.alert(m+"/"+d+"/"+y);
+	hideAllMealPanels();
+	panel=document.getElementById("mpdate-"+d);
+	if (panel !=null){ 
+		panel.style['display'] = "inline-block";
+	}
 }
 
 </script>
