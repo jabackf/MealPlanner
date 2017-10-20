@@ -141,15 +141,34 @@ class MealPlanner{
 			
 			echo "\n\t\t<h3>Date: ".$this->calHandle->selectedMonth."/".$i."/".$this->calHandle->selectedYear."<br>";
 			
-			echo "\n\t\t\t<select name='foodName'><option value='none'>(select one)</option>";
+			echo "\n\t\t\t<select class='lstFoods'><option value='none'>(select one)</option>";
 			$r=MealDB::runQuery("SELECT name FROM FoodItems");
 			while ($g=mysqli_fetch_row($r)){
 				echo "\n\t\t\t\t<option value='".$g[0]."'>".$g[0]."</option>";
 			}
 			echo "\n\t\t\t</select>";
+			echo " <button type=button class='btnAddBreakfast'>Add To Breakfast</button> ";
+			echo "<button type=button class='btnAddAM'>Add To AM Snack</button> ";
+			echo "<button type=button class='btnAddLunch'>Add To Lunch</button> ";
+			echo "<button type=button class='btnAddPM'>Add To PM Snack</button> ";
+			echo "<button type=button class='btnAddDinner'>Add To Dinner</button><br/><br/>";
+			
+			$formattedDate = $this->calHandle->selectedYear."-".str_pad($this->calHandle->selectedMonth, 2, "0", STR_PAD_LEFT)."-".str_pad($i, 2, "0", STR_PAD_LEFT);
+			$r=MealDB::runQuery("SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '".$formattedDate."'");
+			
+			$strBreakfastList = "<label>Breakfast<br><select size='10' class='lstBreakfastList'>";
+			
+			$strBreakfastList.= "<option>Option1</option><option>Option2</option></select></label>";
+			
+			echo $strBreakfastList;
+			
+			echo "\n\t\t\t";
+			
 			echo "\n\t\t</fieldset>\n\t</form>";	
 			echo "\n\t</div>";
 		}
+		
+		//Have one save button for all panels. Use hidden fields to detect changes
 		
 		echo "\n</div>";
 	}
@@ -173,5 +192,29 @@ function loadDate(m,d,y) {
 		panel.style['display'] = "inline-block";
 	}
 }
+
+	
+//Initializes the page and adds even listeners
+function init() {
+	
+	var btn = document.getElementsByClassName("btnAddBreakfast");
+	if (btn){
+		for (var i = 0; i < btn.length; i++) {
+			btn[i].addEventListener("click", function( event ) {
+				var foodList = event.currentTarget.parentElement.getElementsByClassName('lstFoods')[0];
+				var selFood = foodList.options[foodList.selectedIndex].value;
+				var opt = document.createElement("option");
+				var mealList = event.currentTarget.parentElement.getElementsByClassName('lstBreakfastList')[0];
+				//mealList.options.add(opt);
+				opt.text = selFood;
+				opt.value = selFood;
+				mealList.options.add(opt);
+				
+			}, false);
+		}
+	}
+}
+
+window.addEventListener("load", init, false);
 
 </script>
