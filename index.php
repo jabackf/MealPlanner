@@ -9,5 +9,4 @@ $mp->showNotifications();
 $mp->showAddFoodTools();
 $mp->showDeleteFoodTools();
 $mp->showDatePicker();
-$mp->showMealPicker();
 ?>
