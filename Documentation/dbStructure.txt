@@ -1,0 +1,30 @@
+FoodGroups
+	groupId pk
+	name
+
+FoodItems
+	foodId pk
+	name
+
+Foods
+	foodId fk
+	groupId fk
+
+MealTypes
+	mealTypeId pk
+	type
+
+Calendars
+	calendarId pk
+	name
+
+MealItems
+	id pk
+	mealTypeId fk
+	foodId fk
+	date
+	calendarId fk
+
+Users
+	user pk
+	passwordHash

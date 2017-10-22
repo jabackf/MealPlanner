@@ -7,6 +7,11 @@
 	
 	Contains static MealDB class and all functions related to database interaction
 	Class containing basic database settings is in settings.php
+	
+	NOTES: 
+	
+	Add an active field to the food items table. That way they don't need to be permenantly deleted with the meal tools
+	This will keep old meal plans that used the food from missing data.
 */
 
 require_once("settings.php");
@@ -153,6 +158,58 @@ class MealDB{
 			}
 		}
 	}
+	
+	//Adds a new meal for the given date, overwriting any previously stored meals for the specified date
+	//Meal type. "Breakfast", "AM", "Lunch", "PM", or "Dinner"
+	//Foodlist. List of food ids delineated with a pipe "|". E.g. "1|8|12"
+	//mealDate is the date to save the meal for in mySql format - "YYYY-MM-DD"
+	static function addMeal($type, $foodList, $mealDate, $calendarId){
+		//Delete existing meals for this date.
+		$mealTypeId = mysqli_fetch_array(self::runQuery("SELECT mealTypeId FROM MealTypes WHERE type = '".$type."'"))[0];
+		if ($mealTypeId==""){ //Meal type doesn't exist. Add it.
+			self::runQuery("INSERT INTO MealTypes (type) VALUES ('".$type."')");
+			$mealTypeId = mysqli_fetch_array(self::runQuery("SELECT mealTypeId FROM MealTypes WHERE type = '".$type."'"))[0];
+		}
+
+		self::runQuery("DELETE FROM MealItems WHERE date = '".$mealDate."' AND mealTypeId = '".$mealTypeId."'");
+		
+		
+		if($foodList!=""){ //If we have food to add (we didn't just delete everything from the list)
+			//Add new data
+			$l = explode("|",$foodList);
+			for ($i=0; $i<count($l); $i++){
+				self::runQuery("INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('$mealTypeId','".$l[$i]."','".$mealDate."','".$calendarId."')");
+			}
+		}
+	}
+
+	//Returns a string of food names for the given date, meal type, and calendar
+	//Returns false if no information is found.
+	//Meal type. "Breakfast", "AM", "Lunch", "PM", or "Dinner"
+	//mealDate is the date to save the meal for in mySql format - "YYYY-MM-DD"
+	static function getMeal($type, $mealDate, $calendarId){
+		//Delete existing meals for this date.
+		$mealTypeId = mysqli_fetch_array(self::runQuery("SELECT mealTypeId FROM MealTypes WHERE type = '".$type."'"))[0];
+		if ($mealTypeId==""){ //Meal type doesn't exist.
+			return -1;
+		}
+
+		$r = self::runQuery("SELECT * FROM MealItems WHERE date = '".$mealDate."' AND mealTypeId = '".$mealTypeId."' AND calendarId = '".$calendarId."'");
+		if (mysqli_num_rows($r)==0) return false;
+
+		$foodString = "";
+		$addPipe = false;
+		while ($row = mysqli_fetch_assoc($r)){
+			$foodId = $row['foodId'];
+			$food = mysqli_fetch_array(self::runQuery("SELECT name FROM FoodItems WHERE foodId = '".$foodId."'"))[0];
+			if ($addPipe) $foodString.="|";
+			$foodString.=$food;
+			$addPipe=true;
+		}
+
+		return $foodString;
+	}
+	
 	
 	//Looks for default foods (and associated groups) as CSV file (fname specified in settings.php), then loads the data into the database.
 	static function loadCSVFoods(){

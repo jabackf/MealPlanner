@@ -57,3 +57,12 @@
 .toolPanel{
 	display:inline-block;
 }
+
+/*A div containing all listboxes of meals for a given date in the mealplanner tools*/
+.mealListParent{
+	display: flex;
+}
+/*A div containing a single listbox which displays all meals in the mealplanner tools*/
+.mealList{
+	padding:10px;
+}

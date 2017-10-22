@@ -16,6 +16,7 @@ class Calendar{
 
 	private $callback = "";  //Stores a reference to a JS callback function that is called when a date is clicked.
 	private $calName = "default"; //The name of the calendar, used to reference the database
+	public $calId; //The id used to reference the calendar in the database
 	public $selectedMonth;
 	public $selectedYear;
 	
@@ -24,6 +25,18 @@ class Calendar{
 		if ($calName){
 			$this->calName = $calName;
 		}
+		
+		//Find the ID in the database, and create a new calendar if it doesn't already exist
+		$r=MealDB::runQuery("SELECT calendarId FROM Calendars WHERE name = '".$this->calName."'");
+		if ($r->num_rows==0){ //A new calendar
+			MealDB::runQuery("INSERT INTO Calendars (name) VALUES ('".$this->calName."')");
+			$r=MealDB::runQuery("SELECT calendarId FROM Calendars WHERE name = '".$this->calName."'");
+			$this->calId = mysqli_fetch_array($r)[0];
+		}
+		else{
+			$this->calId = mysqli_fetch_array($r)[0];
+		}
+		
 		$this->selectedYear= date('Y');
 		$this->selectedMonth= date('m');
 
@@ -218,8 +231,10 @@ function calMouseOverDate() {
 			var panel = document.getElementById("date_data"+event.target.id)
 			if (panel !=null){ 
 				panel.style['display'] = "block";
-				panel.style.left = event.clientX+10;
-				panel.style.top = event.clientY+10;
+				var xOffset=Math.max(document.documentElement.scrollLeft,document.body.scrollLeft);
+				var yOffset=Math.max(document.documentElement.scrollTop,document.body.scrollTop);
+				panel.style.left = event.clientX+xOffset+10;
+				panel.style.top = event.clientY+yOffset+10;
 				event.target.style["background-image"]="url('img/fuzzyball.png')";
 				event.target.style["background-position"]="-8px -3px";
 			}

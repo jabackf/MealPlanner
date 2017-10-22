@@ -1,1604 +1,928 @@
 
 
-Timestamp: 2017-10-18 18:21:30
+Timestamp: 2017-10-22 22:07:09
 Attempting following query:
 SHOW DATABASES
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:21:30
+Timestamp: 2017-10-22 22:07:09
 Attempting following query:
-CREATE DATABASE meal
+SHOW TABLES FROM meal
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:21:30
+Timestamp: 2017-10-22 22:07:09
 Attempting following query:
-CREATE TABLE FoodGroups (
-groupId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(30) NOT NULL,
-PRIMARY KEY (groupId))
+SELECT calendarId FROM Calendars WHERE name = 'calendar'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:21:30
-Attempting following query:
-CREATE TABLE FoodItems (
-foodId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(90) NOT NULL,
-PRIMARY KEY (foodId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:30
-Attempting following query:
-CREATE TABLE Foods (
-foodId INT(6) UNSIGNED,
-groupId INT(6) UNSIGNED,
-FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
-FOREIGN KEY (groupId) REFERENCES FoodGroups(groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:31
-Attempting following query:
-CREATE TABLE MealTypes (
-mealTypeId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-type VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:31
-Attempting following query:
-CREATE TABLE Calendars (
-calendarId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-name VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:31
-Attempting following query:
-CREATE TABLE MealItems (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-mealTypeId INT(6) UNSIGNED,
-foodId INT(6) UNSIGNED,
-date DATE,
-calendarId INT(6) UNSIGNED,
- FOREIGN KEY (mealTypeId) REFERENCES MealTypes(mealTypeId),
- FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
- FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:32
-Attempting following query:
-CREATE TABLE Users (
-user VARCHAR(60) NOT NULL PRIMARY KEY,
-passwordHash CHAR(40) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:32
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:32
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Spaghetti')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:32
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:32
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Grains/Bread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:21:32
-Attempting following query:
-SELECT id FROM FoodItems WHERE name='Spaghetti'
-
-Timestamp: 2017-10-18 18:23:14
-Attempting following query:
-SHOW DATABASES
-
-Timestamp: 2017-10-18 18:28:14
-Attempting following query:
-SHOW DATABASES
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:14
-Attempting following query:
-CREATE DATABASE meal
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:14
-Attempting following query:
-CREATE TABLE FoodGroups (
-groupId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(30) NOT NULL,
-PRIMARY KEY (groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:14
-Attempting following query:
-CREATE TABLE FoodItems (
-foodId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(90) NOT NULL,
-PRIMARY KEY (foodId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:14
-Attempting following query:
-CREATE TABLE Foods (
-foodId INT(6) UNSIGNED,
-groupId INT(6) UNSIGNED,
-FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
-FOREIGN KEY (groupId) REFERENCES FoodGroups(groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:15
-Attempting following query:
-CREATE TABLE MealTypes (
-mealTypeId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-type VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:15
-Attempting following query:
-CREATE TABLE Calendars (
-calendarId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-name VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:16
-Attempting following query:
-CREATE TABLE MealItems (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-mealTypeId INT(6) UNSIGNED,
-foodId INT(6) UNSIGNED,
-date DATE,
-calendarId INT(6) UNSIGNED,
- FOREIGN KEY (mealTypeId) REFERENCES MealTypes(mealTypeId),
- FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
- FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:16
-Attempting following query:
-CREATE TABLE Users (
-user VARCHAR(60) NOT NULL PRIMARY KEY,
-passwordHash CHAR(40) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:16
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:16
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Spaghetti')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:16
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:16
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Grains/Bread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:28:16
-Attempting following query:
-SELECT id FROM FoodItems WHERE name='Spaghetti'
-
-Timestamp: 2017-10-18 18:30:20
-Attempting following query:
-SHOW DATABASES
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:20
-Attempting following query:
-CREATE DATABASE meal
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:20
-Attempting following query:
-CREATE TABLE FoodGroups (
-groupId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(30) NOT NULL,
-PRIMARY KEY (groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:21
-Attempting following query:
-CREATE TABLE FoodItems (
-foodId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(90) NOT NULL,
-PRIMARY KEY (foodId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:21
-Attempting following query:
-CREATE TABLE Foods (
-foodId INT(6) UNSIGNED,
-groupId INT(6) UNSIGNED,
-FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
-FOREIGN KEY (groupId) REFERENCES FoodGroups(groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:22
-Attempting following query:
-CREATE TABLE MealTypes (
-mealTypeId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-type VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:22
-Attempting following query:
-CREATE TABLE Calendars (
-calendarId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-name VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:22
-Attempting following query:
-CREATE TABLE MealItems (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-mealTypeId INT(6) UNSIGNED,
-foodId INT(6) UNSIGNED,
-date DATE,
-calendarId INT(6) UNSIGNED,
- FOREIGN KEY (mealTypeId) REFERENCES MealTypes(mealTypeId),
- FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
- FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:23
-Attempting following query:
-CREATE TABLE Users (
-user VARCHAR(60) NOT NULL PRIMARY KEY,
-passwordHash CHAR(40) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:23
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:23
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Spaghetti')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:23
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:23
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Grains/Bread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:30:23
+Timestamp: 2017-10-22 22:07:09
 Attempting following query:
 SELECT foodId FROM FoodItems WHERE name='Spaghetti'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:30:23
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:01
-Attempting following query:
-SHOW DATABASES
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:01
-Attempting following query:
-CREATE DATABASE meal
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:01
-Attempting following query:
-CREATE TABLE FoodGroups (
-groupId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(30) NOT NULL,
-PRIMARY KEY (groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:01
-Attempting following query:
-CREATE TABLE FoodItems (
-foodId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(90) NOT NULL,
-PRIMARY KEY (foodId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:02
-Attempting following query:
-CREATE TABLE Foods (
-foodId INT(6) UNSIGNED,
-groupId INT(6) UNSIGNED,
-FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
-FOREIGN KEY (groupId) REFERENCES FoodGroups(groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:02
-Attempting following query:
-CREATE TABLE MealTypes (
-mealTypeId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-type VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:02
-Attempting following query:
-CREATE TABLE Calendars (
-calendarId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-name VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:02
-Attempting following query:
-CREATE TABLE MealItems (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-mealTypeId INT(6) UNSIGNED,
-foodId INT(6) UNSIGNED,
-date DATE,
-calendarId INT(6) UNSIGNED,
- FOREIGN KEY (mealTypeId) REFERENCES MealTypes(mealTypeId),
- FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
- FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:03
-Attempting following query:
-CREATE TABLE Users (
-user VARCHAR(60) NOT NULL PRIMARY KEY,
-passwordHash CHAR(40) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:03
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:03
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Spaghetti')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:03
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:03
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Grains/Bread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:03
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:03
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:03
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('','')
-
-Timestamp: 2017-10-18 18:38:44
-Attempting following query:
-SHOW DATABASES
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:44
-Attempting following query:
-CREATE DATABASE meal
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:44
-Attempting following query:
-CREATE TABLE FoodGroups (
-groupId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(30) NOT NULL,
-PRIMARY KEY (groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:44
-Attempting following query:
-CREATE TABLE FoodItems (
-foodId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(90) NOT NULL,
-PRIMARY KEY (foodId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:45
-Attempting following query:
-CREATE TABLE Foods (
-foodId INT(6) UNSIGNED,
-groupId INT(6) UNSIGNED,
-FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
-FOREIGN KEY (groupId) REFERENCES FoodGroups(groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:45
-Attempting following query:
-CREATE TABLE MealTypes (
-mealTypeId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-type VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:45
-Attempting following query:
-CREATE TABLE Calendars (
-calendarId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-name VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:46
-Attempting following query:
-CREATE TABLE MealItems (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-mealTypeId INT(6) UNSIGNED,
-foodId INT(6) UNSIGNED,
-date DATE,
-calendarId INT(6) UNSIGNED,
- FOREIGN KEY (mealTypeId) REFERENCES MealTypes(mealTypeId),
- FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
- FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:46
-Attempting following query:
-CREATE TABLE Users (
-user VARCHAR(60) NOT NULL PRIMARY KEY,
-passwordHash CHAR(40) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:47
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:47
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Spaghetti')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:47
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:47
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Grains/Bread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:47
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:47
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:38:47
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('','')
-
-Timestamp: 2017-10-18 18:40:12
-Attempting following query:
-SHOW DATABASES
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:12
-Attempting following query:
-CREATE DATABASE meal
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:12
-Attempting following query:
-CREATE TABLE FoodGroups (
-groupId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(30) NOT NULL,
-PRIMARY KEY (groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:12
-Attempting following query:
-CREATE TABLE FoodItems (
-foodId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(90) NOT NULL,
-PRIMARY KEY (foodId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:13
-Attempting following query:
-CREATE TABLE Foods (
-foodId INT(6) UNSIGNED,
-groupId INT(6) UNSIGNED,
-FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
-FOREIGN KEY (groupId) REFERENCES FoodGroups(groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:13
-Attempting following query:
-CREATE TABLE MealTypes (
-mealTypeId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-type VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:13
-Attempting following query:
-CREATE TABLE Calendars (
-calendarId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-name VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:14
-Attempting following query:
-CREATE TABLE MealItems (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-mealTypeId INT(6) UNSIGNED,
-foodId INT(6) UNSIGNED,
-date DATE,
-calendarId INT(6) UNSIGNED,
- FOREIGN KEY (mealTypeId) REFERENCES MealTypes(mealTypeId),
- FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
- FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:14
-Attempting following query:
-CREATE TABLE Users (
-user VARCHAR(60) NOT NULL PRIMARY KEY,
-passwordHash CHAR(40) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Spaghetti')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Grains/Bread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Hot Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Hot Dogs')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Hot Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Meat/Meat Alternate')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Hot Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Corn Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Corn Dogs')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Corn Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Corn Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Steamed Veggies'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Steamed Veggies')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Fruit/Vegetable')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Steamed Veggies'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Chicken Nuggets'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Chicken Nuggets')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Chicken Nuggets'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='PB&J'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('PB&J')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='PB&J'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='PB&J'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Peas'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Peas')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Peas'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Milk'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Milk')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Milk'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Milk')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
+Timestamp: 2017-10-22 22:07:09
 Attempting following query:
 SELECT foodId FROM FoodItems WHERE name='Milk'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:40:15
+Timestamp: 2017-10-22 22:07:09
 Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Milk'
+SELECT mealTypeId FROM MealTypes WHERE type = 'Breakfast'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:40:15
+Timestamp: 2017-10-22 22:07:09
 Attempting following query:
-SELECT name FROM FoodItems WHERE name='Yogurt'
+DELETE FROM MealItems WHERE date = '2017-10-22' AND mealTypeId = '1'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:40:15
+Timestamp: 2017-10-22 22:07:09
 Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Yogurt')
-Query succesfully executed.
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','1','2017-10-22','2'
 
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Yogurt'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Juice'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Juice')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Juice'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Cereal'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Cereal')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Cereal'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Toast'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:15
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Toast')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Toast'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Cornbread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Cornbread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Cornbread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Cooked Dry Beans'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Cooked Dry Beans')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Cooked Dry Beans'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Fish Sticks'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Fish Sticks')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Fish Sticks'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:40:16
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:20
+Timestamp: 2017-10-22 22:08:18
 Attempting following query:
 SHOW DATABASES
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:20
+Timestamp: 2017-10-22 22:08:18
 Attempting following query:
-CREATE DATABASE meal
+SHOW TABLES FROM meal
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:20
+Timestamp: 2017-10-22 22:08:18
 Attempting following query:
-CREATE TABLE FoodGroups (
-groupId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(30) NOT NULL,
-PRIMARY KEY (groupId))
+SELECT calendarId FROM Calendars WHERE name = 'calendar'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:20
-Attempting following query:
-CREATE TABLE FoodItems (
-foodId INT(6) UNSIGNED AUTO_INCREMENT, 
-name VARCHAR(90) NOT NULL,
-PRIMARY KEY (foodId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:21
-Attempting following query:
-CREATE TABLE Foods (
-foodId INT(6) UNSIGNED,
-groupId INT(6) UNSIGNED,
-FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
-FOREIGN KEY (groupId) REFERENCES FoodGroups(groupId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:21
-Attempting following query:
-CREATE TABLE MealTypes (
-mealTypeId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-type VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:21
-Attempting following query:
-CREATE TABLE Calendars (
-calendarId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-name VARCHAR(20) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:22
-Attempting following query:
-CREATE TABLE MealItems (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-mealTypeId INT(6) UNSIGNED,
-foodId INT(6) UNSIGNED,
-date DATE,
-calendarId INT(6) UNSIGNED,
- FOREIGN KEY (mealTypeId) REFERENCES MealTypes(mealTypeId),
- FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
- FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:22
-Attempting following query:
-CREATE TABLE Users (
-user VARCHAR(60) NOT NULL PRIMARY KEY,
-passwordHash CHAR(40) NOT NULL)
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:22
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Spaghetti'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:22
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Spaghetti')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:22
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:22
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Grains/Bread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
+Timestamp: 2017-10-22 22:08:18
 Attempting following query:
 SELECT foodId FROM FoodItems WHERE name='Spaghetti'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('1','1')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Hot Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Hot Dogs')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Hot Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('2','1')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Meat/Meat Alternate')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Hot Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('2','2')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Corn Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Corn Dogs')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Corn Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('3','2')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Corn Dogs'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('3','1')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Steamed Veggies'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Steamed Veggies')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Fruit/Vegetable')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Steamed Veggies'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('4','3')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Chicken Nuggets'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Chicken Nuggets')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Chicken Nuggets'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('5','2')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='PB&J'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:23
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('PB&J')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='PB&J'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('6','1')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='PB&J'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('6','2')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Peas'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Peas')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Peas'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('7','3')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Milk'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Milk')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Milk'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO FoodGroups (name) VALUES ('Milk')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:08:18
 Attempting following query:
 SELECT foodId FROM FoodItems WHERE name='Milk'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:08:18
 Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Milk'
+SELECT mealTypeId FROM MealTypes WHERE type = 'Breakfast'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:08:18
 Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('8','4')
+DELETE FROM MealItems WHERE date = '2017-10-22' AND mealTypeId = '1'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:08:18
 Attempting following query:
-SELECT name FROM FoodItems WHERE name='Yogurt'
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','1','2017-10-22','2'
+
+Timestamp: 2017-10-22 22:08:23
+Attempting following query:
+SHOW DATABASES
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:08:23
 Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Yogurt')
+SHOW TABLES FROM meal
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:08:23
 Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
+SELECT calendarId FROM Calendars WHERE name = 'calendar'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:08:23
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Spaghetti'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:08:23
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Milk'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:08:23
+Attempting following query:
+SELECT mealTypeId FROM MealTypes WHERE type = 'Breakfast'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:08:23
+Attempting following query:
+DELETE FROM MealItems WHERE date = '2017-10-22' AND mealTypeId = '1'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:08:23
+Attempting following query:
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','1','2017-10-22','2'
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+SHOW DATABASES
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+SHOW TABLES FROM meal
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+SELECT calendarId FROM Calendars WHERE name = 'calendar'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Spaghetti'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Milk'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+SELECT mealTypeId FROM MealTypes WHERE type = 'Breakfast'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+DELETE FROM MealItems WHERE date = '2017-10-22' AND mealTypeId = '1'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','1','2017-10-22','2')
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
+Attempting following query:
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','8','2017-10-22','2')
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:32
 Attempting following query:
 SELECT foodId FROM FoodItems WHERE name='Yogurt'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:32
 Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
+SELECT foodId FROM FoodItems WHERE name='Peas'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('9','2')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Juice'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Juice')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Juice'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Fruit/Vegetable'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('10','3')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Cereal'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Cereal')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Cereal'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('11','1')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Toast'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Toast')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Toast'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('12','1')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodItems WHERE name='Cornbread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Cornbread')
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
-Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Grains/Bread'
-Query succesfully executed.
-
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:32
 Attempting following query:
 SELECT foodId FROM FoodItems WHERE name='Cornbread'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:32
 Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Grains/Bread'
+SELECT mealTypeId FROM MealTypes WHERE type = 'Breakfast'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:32
 Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('13','1')
+DELETE FROM MealItems WHERE date = '2017-10-23' AND mealTypeId = '1'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:32
 Attempting following query:
-SELECT name FROM FoodItems WHERE name='Cooked Dry Beans'
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','9','2017-10-23','2')
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:32
 Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Cooked Dry Beans')
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','7','2017-10-23','2')
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:32
 Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','13','2017-10-23','2')
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Cooked Dry Beans'
+SELECT name FROM FoodGroups
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
+SELECT name FROM FoodItems
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('14','2')
+SELECT name FROM FoodItems
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-SELECT name FROM FoodItems WHERE name='Fish Sticks'
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-01' AND calendarId = '2'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-INSERT INTO FoodItems (name) VALUES ('Fish Sticks')
+SELECT name FROM FoodItems
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-SELECT name FROM FoodGroups WHERE name='Meat/Meat Alternate'
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-02' AND calendarId = '2'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-SELECT foodId FROM FoodItems WHERE name='Fish Sticks'
+SELECT name FROM FoodItems
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-SELECT groupId FROM FoodGroups WHERE name='Meat/Meat Alternate'
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-03' AND calendarId = '2'
 Query succesfully executed.
 
-Timestamp: 2017-10-18 18:41:24
+Timestamp: 2017-10-22 22:09:33
 Attempting following query:
-INSERT INTO Foods (foodId, groupId) VALUES ('15','2')
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-04' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-05' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-06' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-07' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-08' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-09' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-10' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-11' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-12' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-13' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-14' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-15' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-16' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-17' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-18' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-19' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-20' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-21' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-22' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-23' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-24' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-25' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-26' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-27' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-28' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-29' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-30' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:09:33
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-31' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SHOW DATABASES
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SHOW TABLES FROM meal
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT calendarId FROM Calendars WHERE name = 'calendar'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Spaghetti'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Milk'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT mealTypeId FROM MealTypes WHERE type = 'Breakfast'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+DELETE FROM MealItems WHERE date = '2017-10-22' AND mealTypeId = '1'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','1','2017-10-22','2')
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','8','2017-10-22','2')
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Yogurt'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Peas'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT foodId FROM FoodItems WHERE name='Cornbread'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT mealTypeId FROM MealTypes WHERE type = 'Breakfast'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+DELETE FROM MealItems WHERE date = '2017-10-23' AND mealTypeId = '1'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','9','2017-10-23','2')
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','7','2017-10-23','2')
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+INSERT INTO MealItems (mealTypeId,foodId,date,calendarId) VALUES ('1','13','2017-10-23','2')
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodGroups
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-01' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-02' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-03' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-04' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-05' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-06' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-07' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-08' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-09' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-10' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-11' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-12' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-13' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-14' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-15' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-16' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-17' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-18' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-19' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-20' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-21' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-22' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-23' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-24' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-25' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-26' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-27' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-28' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-29' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-30' AND calendarId = '2'
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT name FROM FoodItems
+Query succesfully executed.
+
+Timestamp: 2017-10-22 22:10:09
+Attempting following query:
+SELECT 'id', 'mealTypeId', 'foodId' FROM MealItems WHERE date = '2017-10-31' AND calendarId = '2'
 Query succesfully executed.
