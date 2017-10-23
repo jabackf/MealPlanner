@@ -9,7 +9,6 @@
 
 	NOTES: 
 		Tools still to implement: Export food csv list, clear all meals, add notes/events to mealpicker
-		A warning should appear when next/prev is clicked on the calendar
 */
 require_once("settings.php");
 require_once("db.php");
