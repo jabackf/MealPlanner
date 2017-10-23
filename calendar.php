@@ -10,11 +10,16 @@
 	Contains calendar class for the meal planner. This class contains all methods
 	for generating and displaying interactive and printable calendars, picking
 	dates, etc.
+
+	NOTES:
+	Finish mealDataExists and the data panel creator to account for events
+	Added $this->nextPrevCallback and variable set in mealPlanner. Next I need to implement it in the anchors for next/previous
 */
 
 class Calendar{
 
-	private $callback = "";  //Stores a reference to a JS callback function that is called when a date is clicked.
+	private $callback = "";  //Stores an optional JS callback function that is called when a date is clicked. month, day, and year are passed
+	private $nextPreviousCallback=""; //Stores an optional JS callback function for when the next or previous date is clicked. "next" or "previous" are passed
 	private $calName = "default"; //The name of the calendar, used to reference the database
 	public $calId; //The id used to reference the calendar in the database
 	public $selectedMonth;
@@ -53,8 +58,9 @@ class Calendar{
 	}
 	
 	//Set the javascript callback function
-	function set_callback($function_name){
-		$this->callback=$function_name;
+	function set_callbacks($date_callback, $nextprev_callback=""){
+		$this->callback=$date_callback;
+		$this->nextPrevCallback=$nextprev_callback;
 	}
 
 	//Return the number of days in a given month
@@ -161,13 +167,12 @@ class Calendar{
 		}
 		for ($i=1; $i<=$this->days_in_month($m, $y); $i+=1)
 		{
-
 			$col='black';
-			$data_exists=false;
-			if (false) //data exists
+			$dataExists = $this->mealDataExists($m,$i,$y);
+
+			if ($dataExists)
 			{
 				$col="blue";
-				$data_exists=true;
 			}
 			if ($m==date('m') && $y==date('Y') && $i==date('d'))
 			{
@@ -206,55 +211,42 @@ class Calendar{
 
 
 		//Create data panels that show/hide on mouse over
-		echo "<!---Add panels that show data for each date on mouse over-->\n";
+		echo "\t<!---Add panels that show data for each date on mouse over-->\n\t<div>";
 		for ($i=1; $i<=$this->days_in_month($m, $y); $i+=1)
 		{
-			//if ($data_exists){
-			echo "\n<div class='date_data' id='date_data".$i."'><b>PlaceHolder Info #1</b><br/>Date: ".$m."/".$i."/".$y."<br/>Fill this panel with data from DB</div>";
-			//}
+			$dataExists = $this->mealDataExists($m,$i,$y);
+			if ($dataExists){
+				$mealTypes=['Breakfast','AM','Lunch','PM','Dinner'];
+				$mealHeaders=['Breakfast','AM Snack','Lunch','PM Snack','Dinner'];
+				echo "\n\t\t<div class='date_data' id='date_data".$i."'><strong>Date: ".$m."/".$i."/".$y."</strong><br/>";
+				for ($z=0; $z<count($mealTypes); $z+=1){
+					$formattedDate = $y."-".str_pad($m, 2, "0", STR_PAD_LEFT)."-".str_pad($i, 2, "0", STR_PAD_LEFT);
+					$foodString = MealDB::getMeal($mealTypes[$z],$formattedDate,$this->calId);
+					if ($foodString!=false){
+						echo "\n\t\t\t<strong>".$mealHeaders[$z]."</strong><br><ul>";
+						$foods = explode("|",$foodString);
+
+						for ($f = 0; $f<count($foods); $f+=1){
+							echo "\n\t\t\t<li>".$foods[$f]."</li>";
+						}
+						echo "\n\t\t\t</ul>";
+					}
+				}
+				echo"\n\t\t</div>";
+			}
 		}
 
-		echo "<!--- END CALENDAR -->\n";
+		echo "</div>\n\t<!--- END CALENDAR -->\n";
+	}
+
+	//Returns true if any meal or event data exists for the given date
+	function mealDataExists($m,$d,$y){
+		$formattedDate = $y."-".str_pad($m, 2, "0", STR_PAD_LEFT)."-".str_pad($d, 2, "0", STR_PAD_LEFT);
+		$r=MealDB::runQuery("SELECT * FROM MealItems WHERE date = '".$formattedDate."'");
+		if (mysqli_num_rows($r)>0) return true;
+		//Check for event data
+		return false;
 	}
 }//End Calendar class
 ?>
 
-<script>
-	
-//Javascript that hides/shows calendar data panels
-function calMouseOverDate() {
-	var dates = document.getElementsByClassName("calendar_date");
-	
-	//Add mouseover event to display panel and move to mouse coordinates
-	for (var i = 0; i < dates.length; i++) {
-		dates[i].addEventListener("mouseenter", function( event ) {
-			var panel = document.getElementById("date_data"+event.target.id)
-			if (panel !=null){ 
-				panel.style['display'] = "block";
-				var xOffset=Math.max(document.documentElement.scrollLeft,document.body.scrollLeft);
-				var yOffset=Math.max(document.documentElement.scrollTop,document.body.scrollTop);
-				panel.style.left = event.clientX+xOffset+10;
-				panel.style.top = event.clientY+yOffset+10;
-				event.target.style["background-image"]="url('img/fuzzyball.png')";
-				event.target.style["background-position"]="-8px -3px";
-			}
-
-		}, false);
-	}
-	
-	//Add mouseout event to hide panel
-	for (var i = 0; i < dates.length; i++) {
-		dates[i].addEventListener("mouseleave", function( event ) {
-			var panel = document.getElementById("date_data"+event.target.id)
-			if (panel !=null){ 
-				panel.style['display'] = "none";
-				event.target.style["background-color"]="transparent";
-				event.target.style["background-image"]="none";
-			}
-
-		}, false);
-	}
-}
-
-window.addEventListener("load", calMouseOverDate, false);
-</script>

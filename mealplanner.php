@@ -9,9 +9,7 @@
 
 	NOTES: 
 		Tools still to implement: Export food csv list, clear all meals, add notes/events to mealpicker
-		All JS still needs separated into it's own script
 		A warning should appear when next/prev is clicked on the calendar
-		Alphabetize food lists
 */
 require_once("settings.php");
 require_once("db.php");
@@ -26,7 +24,7 @@ class MealPlanner{
 	function __construct($calendarName="default"){
 		$this->calName=$calendarName;
 		$this->calHandle = new Calendar($calendarName);
-		$this->calHandle->set_callback("loadDate");
+		$this->calHandle->set_callbacks("loadDate","nextPreviousCalendar");
 		$this->notifications="";
 		
 		//Check if any data needs to be saved, and save it if so.
@@ -146,7 +144,7 @@ class MealPlanner{
 		echo "\n\t<form action='".basename($_SERVER['PHP_SELF'])."' method='post'>\n\t\t<fieldset><legend>Delete Food Items</legend>";
 		echo "\n\t<input type='hidden' name='savedata' value='deleteFood'>";
 		echo "\n\t\t<select name='foodName'><option value='none'>(select one)</option>";
-		$r=MealDB::runQuery("SELECT name FROM FoodItems");
+		$r=MealDB::runQuery("SELECT name FROM FoodItems  ORDER BY name");
 		while ($g=mysqli_fetch_row($r)){
 			echo "\n\t\t\t<option value='".$g[0]."'>".$g[0]."</option>";
 		}
@@ -187,7 +185,7 @@ class MealPlanner{
 			echo "\n\t\t<strong>Date: </strong> ".$this->calHandle->selectedMonth."/".$i."/".$this->calHandle->selectedYear."<br>";
 			
 			echo "\n\t\t\t<strong>Select Foods: </strong> <select class='lstFoods'><option value='none'>(select one)</option>";
-			$r=MealDB::runQuery("SELECT name FROM FoodItems");
+			$r=MealDB::runQuery("SELECT name FROM FoodItems ORDER BY name");
 			while ($g=mysqli_fetch_row($r)){
 				echo "\n\t\t\t\t<option value='".$g[0]."'>".$g[0]."</option>";
 			}
@@ -238,116 +236,3 @@ class MealPlanner{
 	}
 }
 ?>
-
-<script>
-
-var listOfChanges = []; //Keeps track of any changes made to the meal plans
-
-function hideAllMealPanels(){
-	panels = document.getElementsByClassName("mealPlannerPanel");
-	for (var i = 0; i < panels.length; i++) {
-		panels[i].style['display'] = "none";
-	}
-}
-function loadDate(m,d,y) {
-	hideAllMealPanels();
-	panel=document.getElementById("mpdate-"+d);
-	if (panel !=null){ 
-		panel.style['display'] = "inline-block";
-	}
-}
-
-//Return the first index of array that contains the specified value, returns -1 if nothing is found
-function arrayContains(array, value){
-	for (var x = 0; x<array.length; x++){
-		if (array[x]==value) return x;
-	}
-	return -1;
-}
-
-
-//Code that adds events to the "Add to ..." buttons in the meal planner.
-//Type: "Breakfast", "AM", "Luch", "PM", "Dinner"
-function addBtn(type){
-	var btn = document.getElementsByClassName("btnAdd"+type);
-	if (btn){
-		for (var i = 0; i < btn.length; i++) {
-			btn[i].addEventListener("click", function( event ) {
-				var parent = event.currentTarget.parentElement;
-				var foodList = parent.getElementsByClassName('lstFoods')[0];
-				var selFood = foodList.options[foodList.selectedIndex].value;
-				if (selFood!="none"){
-					var opt = document.createElement("option");
-					var mealList = event.currentTarget.parentElement.getElementsByClassName('lst'+type+'List')[0];
-					var mealListId = mealList.getAttribute('id');
-					opt.text = selFood;
-					opt.value = selFood;
-					mealList.options.add(opt);
-					//Add changes to the list of changes string, then update the hidden element that carries changes over through post
-					if (arrayContains(listOfChanges,mealListId)==-1){
-						var l = document.getElementById('changedMealLists');
-						listOfChanges.push(mealListId);
-						l.value = JSON.stringify(listOfChanges);
-					}
-				}
-			}, false);
-		}
-	}
-}
-	
-//Code that adds listeners for "Remove" buttons in the meal planner.
-//Type: "Breakfast", "AM", "Luch", "PM", "Dinner"
-function removeBtn(type){
-	var btn = document.getElementsByClassName("btnRemove"+type);
-	if (btn){
-		for (var i = 0; i < btn.length; i++) {
-			btn[i].addEventListener("click", function( event ) {
-				var mealList = event.currentTarget.parentElement.getElementsByClassName('lst'+type+'List')[0];
-				var mealListId = mealList.getAttribute('id');
-				if (mealList.selectedIndex!=-1){//If something is selected
-					mealList.removeChild(mealList[mealList.selectedIndex]);
-					//Add changes to the list of changes string, then update the hidden element that carries changes over through post
-					if (arrayContains(listOfChanges,mealListId)==-1){
-						var l = document.getElementById('changedMealLists');
-						listOfChanges.push(mealListId);
-						l.value = JSON.stringify(listOfChanges);
-					}
-				}
-			}, false);
-		}
-	}
-}	
-	
-//Initializes the page and adds even listeners
-function init() {
-	
-	//Since the browsers don't send listbox options in POST, we have to attach planned meals manually to a hidden element
-	var btn = document.getElementById("btnMealSubmit");
-	if (btn){
-		btn.addEventListener("click", function( event ) {
-			var l = {};
-			for (var i =0; i<listOfChanges.length; i++){
-				var clist = document.getElementById(listOfChanges[i]);
-				l[listOfChanges[i]]=[];
-				for (var z=0; z<clist.options.length; z++){
-					l[listOfChanges[i]][z]=clist.options[z].value;
-				}
-			}
-			document.getElementById("mpListOfFoods").value = JSON.stringify(l);
-		}, false);
-	}
-
-	//Add events for the meal planner buttons (i.e., "Add food" and "Remove")
-	addBtn("Breakfast");
-	addBtn("AM");
-	addBtn("Lunch");
-	addBtn("PM");
-	addBtn("Dinner");
-	removeBtn("Breakfast");
-	removeBtn("AM");
-	removeBtn("Lunch");
-	removeBtn("PM");
-	removeBtn("Dinner");
-}
-window.addEventListener("load", init, false);
-</script>
