@@ -124,11 +124,14 @@ function nextPreviousCalendar(np, url){
 	else{
 		window.location.href = url;
 	}
+<<<<<<< HEAD
 }
 
 //Displays confirmation prompt with the specified message and returns the result
 function confirmMessage(msg){
 	return window.confirm(msg);
+=======
+>>>>>>> 8393a1cbd272f8b5ace29d75a5181007cd7d5a81
 }
 
 //Initializes the page and adds even listeners

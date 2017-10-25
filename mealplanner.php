@@ -8,8 +8,12 @@
 	interacting the with calendar/db.
 
 	NOTES: 
+<<<<<<< HEAD
 		Tools still to implement: Export food csv list, clear all meals, add notes/events to mealpicker, create/select calendar.
 		
+=======
+		Tools still to implement: Export food csv list, clear all meals, add notes/events to mealpicker
+>>>>>>> 8393a1cbd272f8b5ace29d75a5181007cd7d5a81
 */
 require_once("settings.php");
 require_once("db.php");
