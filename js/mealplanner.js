@@ -113,8 +113,22 @@ function calMouseOverDate() {
 
 //Called when next/previous links are clicked on calendar
 //np contains "next" or "previous"
-function nextPreviousCalendar(var np){
+//url is a string containing the url that loads the next month
+function nextPreviousCalendar(np, url){
+	if (listOfChanges.length>0){
+		if (window.confirm('You have unsaved meal changes for this month. Any unsaved changes will be lost if you switch to the '+np+' month. Would you like to continue anyway?'))
+		{
+			window.location.href = url;
+		}
+	}
+	else{
+		window.location.href = url;
+	}
+}
 
+//Displays confirmation prompt with the specified message and returns the result
+function confirmMessage(msg){
+	return window.confirm(msg);
 }
 
 //Initializes the page and adds even listeners

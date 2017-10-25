@@ -60,7 +60,7 @@ class Calendar{
 	//Set the javascript callback function
 	function set_callbacks($date_callback, $nextprev_callback=""){
 		$this->callback=$date_callback;
-		$this->nextPrevCallback=$nextprev_callback;
+		$this->nextPreviousCallback=$nextprev_callback;
 	}
 
 	//Return the number of days in a given month
@@ -108,7 +108,7 @@ class Calendar{
 		$height=203;  //vertical space between calendar numbers
 		$hoffset=0;
 
-		echo "<div name='calendar' class='calendar'>";
+		echo "<div name='calendar' class='calendar'><a name='calendar'></a> ";
 
 		
 		$m=$this->selectedMonth;
@@ -207,7 +207,12 @@ class Calendar{
 		}
 		echo "\n\t\t</table>";
 
-		echo "\n\t<div class='center'><a href='http://".$purl."#calendar'>prev</a> - "."<a href='http://".$nurl."#calendar'>next</a></div>\n</div><br>\n";
+		if ($this->nextPreviousCallback==""){
+			echo "\n\t<div class='center'><a href='http://".$purl."#calendar'>prev</a> - "."<a href='http://".$nurl."#calendar'>next</a></div>\n</div><br>\n";
+		}
+		else {
+			echo "\n\t<div class='center'><button type='button' onclick='".$this->nextPreviousCallback.'("previous","http://'.$purl.'#calendar")'."'>Previous</button> - <button type='button' onclick='".$this->nextPreviousCallback.'("next","http://'.$nurl.'#calendar")'."'>Next</button></div>\n</div><br>\n";
+		}
 
 
 		//Create data panels that show/hide on mouse over

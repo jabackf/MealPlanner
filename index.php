@@ -9,6 +9,7 @@ $mp = new MealPlanner("calendar");
 $mp->showNotifications();
 $mp->showAddFoodTools();
 $mp->showDeleteFoodTools();
+$mp->showDeleteAllMealsTools();
 $mp->showDatePicker();
 $mp->showMealPicker();
 

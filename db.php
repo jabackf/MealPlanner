@@ -191,7 +191,8 @@ class MealDB{
 		//Delete existing meals for this date.
 		$mealTypeId = mysqli_fetch_array(self::runQuery("SELECT mealTypeId FROM MealTypes WHERE type = '".$type."'"))[0];
 		if ($mealTypeId==""){ //Meal type doesn't exist.
-			return -1;
+			self::runQuery("INSERT INTO MealTypes (type) VALUES ('".$type."')");
+			$mealTypeId = mysqli_fetch_array(self::runQuery("SELECT mealTypeId FROM MealTypes WHERE type = '".$type."'"))[0];
 		}
 
 		$r = self::runQuery("SELECT * FROM MealItems WHERE date = '".$mealDate."' AND mealTypeId = '".$mealTypeId."' AND calendarId = '".$calendarId."'");

@@ -8,8 +8,8 @@
 	interacting the with calendar/db.
 
 	NOTES: 
-		Tools still to implement: Export food csv list, clear all meals, add notes/events to mealpicker
-		A warning should appear when next/prev is clicked on the calendar
+		Tools still to implement: Export food csv list, clear all meals, add notes/events to mealpicker, create/select calendar.
+		
 */
 require_once("settings.php");
 require_once("db.php");
@@ -47,7 +47,7 @@ class MealPlanner{
 	}
 	
 	//Saves any data collected through the POST method to the database. Returns true on success.
-	//Must set 'savedata' hidden input to the type of data being saved: "addNewFood", "deleteFood", "mealPlanChanged"
+	//Must set 'savedata' hidden input to the type of data being saved: "addNewFood", "deleteFood", "mealPlanChanged", "deleteMeals"
 	function saveData(){
 		if ($_POST['savedata']=='addNewFood'){
 			if (!isset($_POST['groupNames']) || $_POST['foodName']==""){
@@ -79,6 +79,13 @@ class MealPlanner{
 				MealDB::runQuery("DELETE FROM FoodItems WHERE foodID = '".$id."'");
 				return true;
 			}
+		}
+
+		if ($_POST['savedata']=='deleteMeals'){
+
+			MealDB::runQuery("DELETE FROM MealItems WHERE CalendarId = '".$this->calHandle->calId."'");
+			return true;
+
 		}
 		
 		if ($_POST['savedata']=='mealPlanChanged'){
@@ -150,6 +157,16 @@ class MealPlanner{
 		}
 		echo "\n\t\t</select>";
 		echo "\n\t\t <input type=submit name='submit' value='Delete Food Item'>";
+		echo "\n\t</fieldset>\n\t</form>";
+		echo "\n</div>";
+	}
+	//Shows a tool panel for deleted foods from the database.
+	function showDeleteAllMealsTools(){
+		echo "\n\n<br><!--Delete All Meals Tools-->\n<div class='toolPanel'>";
+		echo "\n\t<form action='".basename($_SERVER['PHP_SELF'])."' method='post'>\n\t\t<fieldset><legend>Delete All Meals</legend>";
+		echo "\n\t<input type='hidden' name='savedata' value='deleteMeals'>";
+		echo "\n\t\t<strong>Warning:</strong> This option will delete all meals<br/>for the currently selected calendar.<br><br>";
+		echo "\n\t\t <input type='submit' onclick='return confirmMessage(".'"WARNING! This will permenantly remove all planned meals stored in the database for the current calendar. Are you sure you want to continue?"'.")' name='submit' class='center' value='Delete All Meals'>";
 		echo "\n\t</fieldset>\n\t</form>";
 		echo "\n</div>";
 	}
