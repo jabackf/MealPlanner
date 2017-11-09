@@ -8,13 +8,9 @@
 
 require_once("mealplanner.php");
 
-$mp = new MealPlanner("calendar");
-$mp->showNotifications();
-$mp->showAddFoodTools();
-$mp->showDeleteFoodTools();
-$mp->showDeleteAllMealsTools();
-$mp->showDatePicker();
-$mp->showMealPicker();
+$mp = new MealPlanner();
+$mp->showAdminPanel();
+
 
 /*
 $cal = new Calendar("calendar");

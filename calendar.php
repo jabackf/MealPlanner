@@ -13,28 +13,39 @@
 
 	NOTES:
 	Finish mealDataExists and the data panel creator to account for events
-	Added $this->nextPrevCallback and variable set in mealPlanner. Next I need to implement it in the anchors for next/previous
+	Added a "default" field to the Calendars table. Default calendars are now selected automatically unless a calendar name is passed.
+
 */
 
 class Calendar{
 
 	private $callback = "";  //Stores an optional JS callback function that is called when a date is clicked. month, day, and year are passed
 	private $nextPreviousCallback=""; //Stores an optional JS callback function for when the next or previous date is clicked. "next" or "previous" are passed
-	private $calName = "default"; //The name of the calendar, used to reference the database
+	public $calName = "default"; //The name of the calendar, used to reference the database. Default is used if none exists.
 	public $calId; //The id used to reference the calendar in the database
 	public $selectedMonth;
 	public $selectedYear;
 	
 	//$calName - The name of the calendar. If the calendar does not exist in the database, a new one will be created.
-	function __construct($calName){
-		if ($calName){
-			$this->calName = $calName;
+	//If no name is passed, the system will search for a default calendar. A calendar named default will be created if none is found.
+	function __construct($calendarName=""){
+		if ($calendarName!=""){ //We passed a calendar name to load
+			$this->calName = $calendarName;
+		}
+		else{ //No calendar passed. Check for a default calendar in the DB
+			$r=MealDB::runQuery("SELECT name FROM Calendars WHERE isdefault='1'");
+			if (mysqli_num_rows($r)==0){ //No default calendars exist. Create the "default" calendar
+				$r=MealDB::runQuery("INSERT INTO Calendars (name,isdefault) VALUES ('".$this->calName."','1'");
+			}
+			else{//Found a default calendar. Select it.
+				$this->calName = mysqli_fetch_array($r)[0];
+			}
 		}
 		
 		//Find the ID in the database, and create a new calendar if it doesn't already exist
 		$r=MealDB::runQuery("SELECT calendarId FROM Calendars WHERE name = '".$this->calName."'");
 		if ($r->num_rows==0){ //A new calendar
-			MealDB::runQuery("INSERT INTO Calendars (name) VALUES ('".$this->calName."')");
+			MealDB::runQuery("INSERT INTO Calendars (name, isdefault) VALUES ('".$this->calName."','1')");
 			$r=MealDB::runQuery("SELECT calendarId FROM Calendars WHERE name = '".$this->calName."'");
 			$this->calId = mysqli_fetch_array($r)[0];
 		}
@@ -54,6 +65,8 @@ class Calendar{
 		{
 			$this->selectedYear=$_GET['y'];
 		}
+
+		$this->createDataPanels();
 		
 	}
 	
@@ -139,6 +152,7 @@ class Calendar{
 		$url = explode("?", $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
 		$url=$url[0];
 
+
 		if (strpos($url,"?",0))
 		{
 			$nurl=$url."&m=".$nm."&y=".$ny;
@@ -214,8 +228,13 @@ class Calendar{
 			echo "\n\t<div class='center'><button type='button' onclick='".$this->nextPreviousCallback.'("previous","http://'.$purl.'#calendar")'."'>Previous</button> - <button type='button' onclick='".$this->nextPreviousCallback.'("next","http://'.$nurl.'#calendar")'."'>Next</button></div>\n</div><br>\n";
 		}
 
+		echo "</div>\n\t<!--- END CALENDAR -->\n";
+	}
 
+	function createDataPanels(){
 		//Create data panels that show/hide on mouse over
+		$m=$this->selectedMonth;
+		$y=$this->selectedYear;
 		echo "\t<!---Add panels that show data for each date on mouse over-->\n\t<div>";
 		for ($i=1; $i<=$this->days_in_month($m, $y); $i+=1)
 		{
@@ -240,8 +259,6 @@ class Calendar{
 				echo"\n\t\t</div>";
 			}
 		}
-
-		echo "</div>\n\t<!--- END CALENDAR -->\n";
 	}
 
 	//Returns true if any meal or event data exists for the given date
@@ -249,8 +266,32 @@ class Calendar{
 		$formattedDate = $y."-".str_pad($m, 2, "0", STR_PAD_LEFT)."-".str_pad($d, 2, "0", STR_PAD_LEFT);
 		$r=MealDB::runQuery("SELECT * FROM MealItems WHERE date = '".$formattedDate."'");
 		if (mysqli_num_rows($r)>0) return true;
-		//Check for event data
+		if ($this->getNotes($m,$d,$y)) return true;
 		return false;
+	}
+
+	//Returns any stored notes for the given date, or false if nothing is found
+	function getNotes($m,$d,$y){
+		$formattedDate = $y."-".str_pad($m, 2, "0", STR_PAD_LEFT)."-".str_pad($d, 2, "0", STR_PAD_LEFT);
+		$r=MealDB::runQuery("SELECT note FROM Notes WHERE date = '".$formattedDate."' and calendarId='".$this->calId."'");
+		if (mysqli_num_rows($r)==0) return false;
+		
+		return mysqli_fetch_array($r)[0];
+	}
+
+	function setDefaultCalendar($id){
+		MealDB::runQuery("UPDATE Calendars SET isdefault=0");
+		MealDB::runQuery("UPDATE Calendars SET isdefault=1 WHERE calendarId='".$id."'");
+	}
+	function deleteCalendar($id){
+		if ($id == $this->calId){
+			return false;
+		}
+		else{
+			MealDB::runQuery("DELETE FROM Calendars WHERE calendarId=".$id);
+			MealDB::runQuery("DELETE FROM MealItems WHERE calendarId=".$id);
+			return true;
+		}
 	}
 }//End Calendar class
 ?>

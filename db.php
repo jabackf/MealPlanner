@@ -113,7 +113,8 @@ class MealDB{
 		//Create Calendar Table
 		$sql = "CREATE TABLE Calendars (
 				calendarId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-				name VARCHAR(20) NOT NULL)";
+				name VARCHAR(20) NOT NULL,
+				isdefault BOOLEAN)";
 		self::runQuery($sql); 
 				
 		//Create MealItem Table
@@ -126,7 +127,16 @@ class MealDB{
 				 FOREIGN KEY (mealTypeId) REFERENCES MealTypes(mealTypeId),
 				 FOREIGN KEY (foodId) REFERENCES FoodItems(foodId),
 				 FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))";
-		self::runQuery($sql); 	
+		self::runQuery($sql); 
+
+		//Create Notes Table
+		$sql = "CREATE TABLE Notes (
+				noteId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+				note VARCHAR(200),
+				date DATE,
+				calendarId INT(6) UNSIGNED,
+				 FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))";
+		self::runQuery($sql);	
 
 		//Create User Table
 		$sql = "CREATE TABLE Users (
@@ -286,6 +296,13 @@ class MealDB{
 		else{
 			return true;
 		}
+	}
+
+	//Pass in calendar id, get calendar name returned
+	static function getCalNameFromId($id){
+		$r=self::runQuery("SELECT name FROM calendars WHERE calendarId='".$id."'");
+		if (mysqli_num_rows($r)==0) return false;
+		return mysqli_fetch_array($r)[0];
 	}
 	
 	//Closes connected, releases log file handle, etc.

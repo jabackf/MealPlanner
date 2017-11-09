@@ -124,14 +124,38 @@ function nextPreviousCalendar(np, url){
 	else{
 		window.location.href = url;
 	}
-<<<<<<< HEAD
 }
 
 //Displays confirmation prompt with the specified message and returns the result
 function confirmMessage(msg){
 	return window.confirm(msg);
-=======
->>>>>>> 8393a1cbd272f8b5ace29d75a5181007cd7d5a81
+
+}
+
+//Updates the meal rules box. Type = meal type (breakfast, lunch, etc), id = id of rule box
+function mealRules(type,id){
+	var src = "";
+	switch (type){
+		case "Breakfast":
+			src = "url(img/standardsBreakfast.png)";
+		break;
+		case "Dinner":
+		case "Lunch":
+			src = "url(img/standardsLunchDinner.png)";
+		break;
+		case "AM":
+		case "PM":
+			src = "url(img/standardsSnack.png)";
+		break;
+	}
+
+	var box = document.getElementById(id);
+	box.style.backgroundImage = src;
+}
+//Clears the meal rule summary box, id = id of rule box
+function clearMealRules(id){
+	var box = document.getElementById(id);
+	box.style.backgroundImage = "url(img/standardsHover.png)";
 }
 
 //Initializes the page and adds even listeners
@@ -164,6 +188,23 @@ function init() {
 	removeBtn("Lunch");
 	removeBtn("PM");
 	removeBtn("Dinner");
+
+	//Add events for detecting changes in meal picker notes textareas
+	var notes = document.getElementsByClassName('toolsNotesEvents');
+	if (notes){
+		for (var i = 0; i < notes.length; i++) {
+			notes[i].addEventListener("input", function(event) {
+				var id = event.target.getAttribute('id');
+				//Add changes to the list of changes string, then update the hidden element that carries changes over through post
+				if (arrayContains(listOfChanges,id)==-1){
+					var l = document.getElementById('changedMealLists');
+					listOfChanges.push(id);
+					l.value = JSON.stringify(listOfChanges);
+				}
+			});
+		}
+	}
+	
 
 	//Add the events that show / hide calendar data panels
 	calMouseOverDate();

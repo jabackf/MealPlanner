@@ -23,8 +23,8 @@
 
 /*The small panel that pops up displaying calendar data when you hover over the date*/
 .date_data{
-	z-index=-1;
 	position:absolute;
+	z-index=-100;
 	display:none;
 	background-color:lightblue;
 
@@ -53,14 +53,25 @@
 	text-align:right;
 }
 
+.floatRight{
+	float:right;
+}
+
 .indentForty{
 	padding-left:40px;
 }
 
+/*All admin tools as separate panels*/
 .toolPanel{
 	display:inline-block;
+	padding:10px;
 }
-
+/*Div containing all admin tools*/
+.adminTools{
+	width:90%;
+	height:1100px;
+	position:relative;
+}
 /*A div containing all listboxes of meals for a given date in the mealplanner tools*/
 .mealListParent{
 	display: flex;
@@ -68,4 +79,19 @@
 /*A div containing a single listbox which displays all meals in the mealplanner tools*/
 .mealList{
 	padding:10px;
+}
+
+.absolute{
+	position:absolute;
+}
+
+/*The notes and events textareas in the meal picker*/
+.toolsNotesEvents{
+	width:375px;
+	height:180px;
+	padding:10px;
+	background-size:100%;
+	background-repeat: no-repeat;
+	display:inline-block;
+
 }

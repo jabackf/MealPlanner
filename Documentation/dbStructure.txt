@@ -17,6 +17,7 @@ MealTypes
 Calendars
 	calendarId pk
 	name
+	isdefault (bool)
 
 MealItems
 	id pk
@@ -24,6 +25,12 @@ MealItems
 	foodId fk
 	date
 	calendarId fk
+
+Notes
+	noteId
+	note
+	date
+	calendarId fk	
 
 Users
 	user pk
