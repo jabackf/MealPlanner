@@ -86,6 +86,7 @@ function calMouseOverDate() {
 			var panel = document.getElementById("date_data"+event.target.id)
 			if (panel !=null){ 
 				panel.style['display'] = "block";
+				panel.style['z-index'] = "100";
 				var xOffset=Math.max(document.documentElement.scrollLeft,document.body.scrollLeft);
 				var yOffset=Math.max(document.documentElement.scrollTop,document.body.scrollTop);
 				panel.style.left = event.clientX+xOffset+10;
@@ -208,6 +209,21 @@ function init() {
 
 	//Add the events that show / hide calendar data panels
 	calMouseOverDate();
+
+	//Hide loading div and show admin tools.
+	var loadingDivs = document.getElementsByClassName('loadingDiv');
+	if (loadingDivs){
+		for (var i = 0; i < loadingDivs.length; i++) {
+			loadingDivs[i].style['display']="none";
+		}
+	}
+	var adminTools = document.getElementsByClassName('adminTools');
+	if (adminTools){
+		for (var i = 0; i < adminTools.length; i++) {
+			adminTools[i].style['display']="block";
+		}
+	}
+
 }
 
 window.addEventListener("load", init, false);

@@ -24,7 +24,7 @@
 /*The small panel that pops up displaying calendar data when you hover over the date*/
 .date_data{
 	position:absolute;
-	z-index=-100;
+	padding:10px;
 	display:none;
 	background-color:lightblue;
 
@@ -61,16 +61,38 @@
 	padding-left:40px;
 }
 
+.indentTwenty{
+	padding-left:20px;
+}
+
+.paddingTen{
+	padding:10px;
+}
+
 /*All admin tools as separate panels*/
 .toolPanel{
 	display:inline-block;
 	padding:10px;
 }
-/*Div containing all admin tools*/
+/*Div containing all admin tools. Invisible until page loads.*/
 .adminTools{
+	display:none;
 	width:90%;
 	height:1100px;
 	position:relative;
+}
+.loadingDiv{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
 }
 /*A div containing all listboxes of meals for a given date in the mealplanner tools*/
 .mealListParent{
@@ -94,4 +116,12 @@
 	background-repeat: no-repeat;
 	display:inline-block;
 
+}
+
+/*Flexbox that organizes dates on datapanels left to right*/
+.datapanel_meal{
+	width:180px;
+}
+.datapanel_flexbox{
+	display:flex;
 }

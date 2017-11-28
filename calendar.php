@@ -242,21 +242,30 @@ class Calendar{
 			if ($dataExists){
 				$mealTypes=['Breakfast','AM','Lunch','PM','Dinner'];
 				$mealHeaders=['Breakfast','AM Snack','Lunch','PM Snack','Dinner'];
-				echo "\n\t\t<div class='date_data' id='date_data".$i."'><strong>Date: ".$m."/".$i."/".$y."</strong><br/>";
+				echo "\n\t\t<div class='date_data' id='date_data".$i."'><strong>Date: ".$m."/".$i."/".$y."</strong><br/></br/>";
+				echo "\n\t\t\t<div class='datapanel_flexbox'>";
 				for ($z=0; $z<count($mealTypes); $z+=1){
 					$formattedDate = $y."-".str_pad($m, 2, "0", STR_PAD_LEFT)."-".str_pad($i, 2, "0", STR_PAD_LEFT);
 					$foodString = MealDB::getMeal($mealTypes[$z],$formattedDate,$this->calId);
 					if ($foodString!=false){
-						echo "\n\t\t\t<strong>".$mealHeaders[$z]."</strong><br><ul>";
+						echo "\n\t\t\t<div class='datapanel_meal'><strong>".$mealHeaders[$z]."</strong><div class='indentTwenty'>";
 						$foods = explode("|",$foodString);
 
 						for ($f = 0; $f<count($foods); $f+=1){
-							echo "\n\t\t\t<li>".$foods[$f]."</li>";
+							echo "\n\t\t\t".$foods[$f]."<br/>";
 						}
-						echo "\n\t\t\t</ul>";
+						echo "\n\t\t\t</div></div>";
 					}
 				}
-				echo"\n\t\t</div>";
+				echo"\n\t\t</div><br>";
+			
+
+				$notes = $this->getNotes($m,$i,$y);
+
+				if($notes){
+					echo "\n\t\t<div class='paddingTen'><strong>Notes: </strong>".$notes."</div>";
+				}
+				echo "</div>";
 			}
 		}
 	}

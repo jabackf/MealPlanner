@@ -381,6 +381,8 @@ class MealPlanner{
 		$this->showNotifications();
 		echo "\n\t<div class='adminTools'>";
 
+		echo "\n\t<div class='loadingDiv'><img src='img/loading.gif'></div>";
+
 		echo "\n\t<div class='absolute' style='top:0px; left:5px;'>";
 		$this->showCalendarTools();
 		echo "\n\t</div>";
@@ -389,7 +391,7 @@ class MealPlanner{
 		$this->showAddFoodTools();
 		echo "\n\t</div>";
 
-		echo "\n\t<div class='absolute' style='top:160px; left:310px;'>";
+		echo "\n\t<div class='absolute' id='mealPlannerPanel' style='top:160px; left:310px;'>";
 		$this->showDeleteAllMealsTools();
 		echo "\n\t</div>";
 
