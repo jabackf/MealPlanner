@@ -1,17 +1,18 @@
 
 <html>
 <body>
-<h3>Meal Planner - End User Calendar Test</h3>
-<a href="admin_test.php">Administrative Tools Test Page</a><br/>
+
+<h3>Meal Planner - Admin Tool Test</h3>
+<a href="index.php">End User Calendar Test</a><br/>
 <!--<a href="https://sdev265meal.000webhostapp.com/">https://sdev265meal.000webhostapp.com/</a><br>-->
 
 <?php
 
 require_once("mealplanner.php");
 
-$cal = new Calendar("calendar");
-echo "<h4>Calendar without callback:</h4>";
-$cal->show_calendar();
+$mp = new MealPlanner();
+$mp->showAdminPanel();
+
 
 ?>
 

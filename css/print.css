@@ -20,6 +20,10 @@ table{
 	width:400px;
 }
 
+td{
+	min-width:80px;
+}
+
 table, tr, td{
 	border:1px solid black;
 	border-collapse: collapse;

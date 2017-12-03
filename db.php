@@ -3,15 +3,11 @@
 /*
 	db.php
 	Jonah Backfish
-	last modified: 10/16/17
+	last modified: 12/03/17
 	
 	Contains static MealDB class and all functions related to database interaction
 	Class containing basic database settings is in settings.php
 	
-	NOTES: 
-	
-	Add an active field to the food items table. That way they don't need to be permenantly deleted with the meal tools
-	This will keep old meal plans that used the food from missing data.
 */
 
 require_once("settings.php");
@@ -137,12 +133,6 @@ class MealDB{
 				calendarId INT(6) UNSIGNED,
 				 FOREIGN KEY (calendarId) REFERENCES Calendars(calendarId))";
 		self::runQuery($sql);	
-
-		//Create User Table
-		$sql = "CREATE TABLE Users (
-				user VARCHAR(60) NOT NULL PRIMARY KEY,
-				passwordHash CHAR(40) NOT NULL)";
-		self::runQuery($sql); 
 		
 		//Load default foods into database
 		self::loadCSVFoods();
@@ -223,7 +213,7 @@ class MealDB{
 
 	static function getNotes($m,$d,$y,$calId){
 		$formattedDate = $y."-".str_pad($m, 2, "0", STR_PAD_LEFT)."-".str_pad($d, 2, "0", STR_PAD_LEFT);
-		$r=MealDB::runQuery("SELECT note FROM Notes WHERE date = '".$formattedDate."' and calendarId='".$calId."'");
+		$r=self::runQuery("SELECT note FROM Notes WHERE date = '".$formattedDate."' and calendarId='".$calId."'");
 		if (mysqli_num_rows($r)==0) return false;
 		
 		return mysqli_fetch_array($r)[0];

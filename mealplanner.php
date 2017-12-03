@@ -2,13 +2,10 @@
 /*
 	mealplanner.php
 	Jonah Backfish
-	last modified: 10/18/17
+	last modified: 12/03/17
 	
 	Contains MealPlanner class which provides methods for displaying the admin tools and
 	interacting the with calendar/db.
-
-	NOTES: 
-		Tools still to implement: Export food csv list, clear all meals, add notes/events to mealpicker, create/select calendar.
 */
 require_once("settings.php");
 require_once("db.php");

@@ -31,7 +31,3 @@ Notes
 	note
 	date
 	calendarId fk	
-
-Users
-	user pk
-	passwordHash

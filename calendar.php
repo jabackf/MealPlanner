@@ -5,15 +5,11 @@
 /*
 	calendar.php
 	Jonah Backfish
-	last modified: 10/16/17
+	last modified: 12/03/17
 	
 	Contains calendar class for the meal planner. This class contains all methods
 	for generating and displaying interactive and printable calendars, picking
 	dates, etc.
-
-	NOTES:
-	Finish mealDataExists and the data panel creator to account for events
-	Added a "default" field to the Calendars table. Default calendars are now selected automatically unless a calendar name is passed.
 
 */
 
