@@ -218,25 +218,26 @@ class Calendar{
 		echo "\n\t\t</table>";
 
 		if ($this->nextPreviousCallback==""){
-			echo "\n\t<div class='center'><a href='http://".$purl."#calendar'>prev</a> - "."<a href='http://".$nurl."#calendar'>next</a></div>\n</div><br>\n";
+			echo "\n\t<div class='center'><a href='http://".$purl."#calendar'>prev</a> - "."<a href='http://".$nurl."#calendar'>next</a>\n</div><br>\n";
 		}
 		else {
-			echo "\n\t<div class='center'><button type='button' onclick='".$this->nextPreviousCallback.'("previous","http://'.$purl.'#calendar")'."'>Previous</button> - <button type='button' onclick='".$this->nextPreviousCallback.'("next","http://'.$nurl.'#calendar")'."'>Next</button></div>\n</div><br>\n";
+			echo "\n\t<div class='center'><button type='button' onclick='".$this->nextPreviousCallback.'("previous","http://'.$purl.'#calendar")'."'>Previous</button> - <button type='button' onclick='".$this->nextPreviousCallback.'("next","http://'.$nurl.'#calendar")'."'>Next</button></div>\n<br>\n";
 		}
 
+		echo "<div class='center'><strong>Print Calendar</strong><br/>";
 		$numDays = $this->days_in_month($m, $y);
-		echo "\n\t\t<select id='selPrintCalendarStart'>";
+		echo "\n\t\tDates <select id='selPrintCalendarStart'>";
 		for ($i=1; $i<=$numDays; $i+=1){
 			echo "\n\t\t<option value='".$i."'>".$i."</option>";
 		}
 		echo "\n\t\t</select>";
-		echo "\n\t\t through <select id='selPrintCalendarEnd'>";
+		echo "\n\t\t to <select id='selPrintCalendarEnd'>";
 		for ($i=1; $i<=$numDays; $i+=1){
 			echo "\n\t\t<option value='".$i."'>".$i."</option>";
 		}
 		echo "\n\t\t</select><br/>";
 
-		echo "<button onclick='getPrintableCalendar(".$m.",".$y.",".$this->calId.")'>Get Printable Calendar</button>";
+		echo "<button onclick='getPrintableCalendar(".$m.",".$y.",".$this->calId.")'>Get Printable Calendar</button></div></div>";
 
 		echo "</div>\n\t<!--- END CALENDAR -->\n";
 	}

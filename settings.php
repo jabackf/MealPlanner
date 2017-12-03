@@ -23,7 +23,7 @@ class Settings{
 	
 	//Assigns settings based on deployment mode. e.g. "local", "server", ect.
 	function __construct(){
-		if ($this->deployment_mode=="000webhost"){
+		if ($this->deployment_mode=="local"){
 			$this->dbName = "meal";
 			$this->host = "localhost";
 			$this->uname = "root";

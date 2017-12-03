@@ -1,9 +1,12 @@
 
 <html>
 <body>
+<h3>Meal Planner - Admin Tools Test</h3>
+<div style="width:500px">
+The tools below allow the administrator to create meal plans and manage calendars. They are designed to be embedded into the administrator control panel.<br/><br/>
+<a href="index.php">End User Calendar Test</a><br/><br/>
+</div>
 
-<h3>Meal Planner - Admin Tool Test</h3>
-<a href="index.php">End User Calendar Test</a><br/>
 <!--<a href="https://sdev265meal.000webhostapp.com/">https://sdev265meal.000webhostapp.com/</a><br>-->
 
 <?php
