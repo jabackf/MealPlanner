@@ -17,12 +17,9 @@ h2, h3{
 }
 
 table{
-	width:400px;
+	min-width:500px;
 }
 
-td{
-	min-width:80px;
-}
 
 table, tr, td{
 	border:1px solid black;
