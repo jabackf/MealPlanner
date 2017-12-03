@@ -15,6 +15,10 @@
 	
 }
 
+.date_panel_font{
+	color:yellow;
+}
+
 /*Calendar heading that displays the name of the month*/
 .calendar_header{
 	font-size:1.2em;
@@ -26,7 +30,8 @@
 	position:absolute;
 	padding:10px;
 	display:none;
-	background-color:lightblue;
+	background-color:#19334d;
+	color:white;
 
 }
 

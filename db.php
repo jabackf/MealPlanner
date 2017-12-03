@@ -193,7 +193,7 @@ class MealDB{
 		}
 	}
 
-	//Returns a string of food names for the given date, meal type, and calendar
+	//Returns a string of food names for the given date, meal type, and calendar. Delineated with | (pipe)
 	//Returns false if no information is found.
 	//Meal type. "Breakfast", "AM", "Lunch", "PM", or "Dinner"
 	//mealDate is the date to save the meal for in mySql format - "YYYY-MM-DD"
@@ -219,6 +219,14 @@ class MealDB{
 		}
 
 		return $foodString;
+	}
+
+	static function getNotes($m,$d,$y,$calId){
+		$formattedDate = $y."-".str_pad($m, 2, "0", STR_PAD_LEFT)."-".str_pad($d, 2, "0", STR_PAD_LEFT);
+		$r=MealDB::runQuery("SELECT note FROM Notes WHERE date = '".$formattedDate."' and calendarId='".$calId."'");
+		if (mysqli_num_rows($r)==0) return false;
+		
+		return mysqli_fetch_array($r)[0];
 	}
 	
 	

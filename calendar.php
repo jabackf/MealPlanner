@@ -228,6 +228,20 @@ class Calendar{
 			echo "\n\t<div class='center'><button type='button' onclick='".$this->nextPreviousCallback.'("previous","http://'.$purl.'#calendar")'."'>Previous</button> - <button type='button' onclick='".$this->nextPreviousCallback.'("next","http://'.$nurl.'#calendar")'."'>Next</button></div>\n</div><br>\n";
 		}
 
+		$numDays = $this->days_in_month($m, $y);
+		echo "\n\t\t<select id='selPrintCalendarStart'>";
+		for ($i=1; $i<=$numDays; $i+=1){
+			echo "\n\t\t<option value='".$i."'>".$i."</option>";
+		}
+		echo "\n\t\t</select>";
+		echo "\n\t\t through <select id='selPrintCalendarEnd'>";
+		for ($i=1; $i<=$numDays; $i+=1){
+			echo "\n\t\t<option value='".$i."'>".$i."</option>";
+		}
+		echo "\n\t\t</select><br/>";
+
+		echo "<button onclick='getPrintableCalendar(".$m.",".$y.",".$this->calId.")'>Get Printable Calendar</button>";
+
 		echo "</div>\n\t<!--- END CALENDAR -->\n";
 	}
 
@@ -242,13 +256,13 @@ class Calendar{
 			if ($dataExists){
 				$mealTypes=['Breakfast','AM','Lunch','PM','Dinner'];
 				$mealHeaders=['Breakfast','AM Snack','Lunch','PM Snack','Dinner'];
-				echo "\n\t\t<div class='date_data' id='date_data".$i."'><strong>Date: ".$m."/".$i."/".$y."</strong><br/></br/>";
+				echo "\n\t\t<div class='date_data' id='date_data".$i."'><strong class='date_panel_font'>Date: </strong>".$m."/".$i."/".$y."<br/></br/>";
 				echo "\n\t\t\t<div class='datapanel_flexbox'>";
 				for ($z=0; $z<count($mealTypes); $z+=1){
 					$formattedDate = $y."-".str_pad($m, 2, "0", STR_PAD_LEFT)."-".str_pad($i, 2, "0", STR_PAD_LEFT);
 					$foodString = MealDB::getMeal($mealTypes[$z],$formattedDate,$this->calId);
 					if ($foodString!=false){
-						echo "\n\t\t\t<div class='datapanel_meal'><strong>".$mealHeaders[$z]."</strong><div class='indentTwenty'>";
+						echo "\n\t\t\t<div class='datapanel_meal'><strong class='date_panel_font'>".$mealHeaders[$z]."</strong><div class='indentTwenty'>";
 						$foods = explode("|",$foodString);
 
 						for ($f = 0; $f<count($foods); $f+=1){
@@ -263,7 +277,7 @@ class Calendar{
 				$notes = $this->getNotes($m,$i,$y);
 
 				if($notes){
-					echo "\n\t\t<div class='paddingTen'><strong>Notes: </strong>".$notes."</div>";
+					echo "\n\t\t<div class='paddingTen'><strong class='date_panel_font'>Notes: </strong>".$notes."</div>";
 				}
 				echo "</div>";
 			}

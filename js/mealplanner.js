@@ -1,6 +1,18 @@
 
 var listOfChanges = []; //Keeps track of any changes made to the meal plans
 
+//Redirects the user to a printable calendar displaying dates between two values stored in selPrintCalendarStart and selPrintCalendarEnd listboxes
+//m = month, y=year, id = calendar ID
+function getPrintableCalendar(m,y,id){
+	var start=document.getElementById('selPrintCalendarStart').options[document.getElementById('selPrintCalendarStart').selectedIndex].value;
+	var end=document.getElementById('selPrintCalendarEnd').options[document.getElementById('selPrintCalendarEnd').selectedIndex].value;
+	if (start>=end){
+		window.alert("Failed to generate calendar. The start date must be less than the end date.");
+		return false;
+	}
+	window.location.href = "printCalendar.php?m="+m+"&y="+y+"&s="+start+"&e="+end+"&id="+id;
+}
+
 function hideAllMealPanels(){
 	panels = document.getElementsByClassName("mealPlannerPanel");
 	for (var i = 0; i < panels.length; i++) {

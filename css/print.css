@@ -1,0 +1,27 @@
+
+.floatLeft{
+	float:left;
+}
+
+.headerText{
+	display:inline-block;
+	padding:5px;
+	margin-top:20px;
+}
+
+h2, h3{
+	margin-top:5px;
+	margin-bottom:0;
+	margin-left:10px;
+	padding:0;
+}
+
+table{
+	width:400px;
+}
+
+table, tr, td{
+	border:1px solid black;
+	border-collapse: collapse;
+	padding:5px;
+}
